@@ -73,7 +73,19 @@ The process invented here to try to tidy this data could have been better and ut
     * Identify whether each row was from a `test` or a `train` session
   * Isolate only `std()` or `mean()` derivations for any given variable
     * Apply the name of these variables to their respective columns
+    * NOTE: this preclused some variables containing similar to `stdFreq()`
   * Bind the columns together into a new data set
     * Clear out the remnants of the old sets to free up memory
   * Begin to rearrange the data to be more `tidy`
- 
+    * `Melt` all the various measurement named columns down
+      * Retain only the `subject`, `activity`, and `session` variables
+      * Extend the rest into a new `measureType` variable using the `observation` column values
+    * Add to a new column `observationType` either `std` or `mean` depending on presense of `-std(` or `-mean(` in the value of the the `measureType` field.
+    * Change all the level labels for `measureType` to rember rendundant and messy references to `-std()` or `-mean()`
+  * Write first dataset to file (turns out wasn't required by instructions!)
+  * Use first dataset to derive averages for `std()` and `mean()`
+    * Since `measureType` is common to both groupings, we cycle through the possible values of these
+    * Then, both by `subject` and `activity`, cycle again and extract all the `std()` and `mean()` values
+    * Record the average of each to a new row in a new dataset
+    * Each row's average values belong either to a `subject` or an `activity` for this `measureType`
+  * Write second/final dataset to file (also turns out wasn't actually required.)
