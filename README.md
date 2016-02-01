@@ -69,6 +69,7 @@ The process invented here to try to tidy this data could have been better and ut
   * Append the two together; column names come later
   * Read in the activities from both the test and training data sets
   * Append the two together with a sensible column name
+* Begin to rearrange the data to be more `tidy`
   * Begin to dress up and stitch together the three sets of equal length columns into a single data set
   * Identify whether each row was from a `test` or a `train` session
   * Isolate only `std()` or `mean()` derivations for any given variable
@@ -76,7 +77,6 @@ The process invented here to try to tidy this data could have been better and ut
     * NOTE: this precludes some variables containing similar to `stdFreq()`
   * Bind the columns together into a new data set
     * Clear out the remnants of the old sets to free up memory
-* Begin to rearrange the data to be more `tidy`
   * `Melt` all the various measurement named columns down
     * Retain only the `subject`, `activity`, and `session` variables
     * Extend the rest into a new `measureType` variable using the `observation` column values
