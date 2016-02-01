@@ -63,17 +63,17 @@ Please see the CodeBook.md file for more about the data and original authors.
 The process invented here to try to tidy this data could have been better and utilized `plyr` or `dplyr`, probably.  Still, it does work and a bit like this:
 
 * Load up the original dataset
-** Read in the subject IDs from both the test and training data sets
-*** Append the two together with a sensible column name
-** Read in the measurements from both the test and training data sets
-*** Append the two together; column names come later
-** Read in the activities from both the test and training data sets
-*** Append the two together with a sensible column name
-** Begin to dress up and stitch together the three sets of equal length columns into a single data set
-*** Identify whether each row was from a `test` or a `train` session
-*** Isolate only `std()` or `mean()` derivations for any given variable
-*** Apply the name of these variables to their respective columns
-*** Bind the columns together into a new data set
-*** Clear out the remnants of the old sets to free up memory
-** Begin to rearrange the data to be more `tidy`
-*** 
+  * Read in the subject IDs from both the test and training data sets
+    * Append the two together with a sensible column name
+  * Read in the measurements from both the test and training data sets
+    * Append the two together; column names come later
+  * Read in the activities from both the test and training data sets
+    * Append the two together with a sensible column name
+  * Begin to dress up and stitch together the three sets of equal length columns into a single data set
+    * Identify whether each row was from a `test` or a `train` session
+  * Isolate only `std()` or `mean()` derivations for any given variable
+    * Apply the name of these variables to their respective columns
+  * Bind the columns together into a new data set
+    * Clear out the remnants of the old sets to free up memory
+  * Begin to rearrange the data to be more `tidy`
+ 
