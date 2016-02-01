@@ -44,7 +44,7 @@ Such that one row might be:
 
 * [1] 2 "test" "WALKING" "tBodyAccJerk" "std" -0.12345
 
-### activity_observations.txt
+### variable_averages.txt
 
 And have added the required averages data set with the following:
 
