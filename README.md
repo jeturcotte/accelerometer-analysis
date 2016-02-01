@@ -19,7 +19,7 @@ But this is not tidy.  We are storing 1..N values for the TYPE of measure in the
 
 Note: I ADDED session (`test` vs. `train`) just for safety sake, otherwise the data would be lost.
 
-## an intermedia schema
+## an intermediate schema
 
 Tiding that up by one step, we can instead get:
 
@@ -27,16 +27,53 @@ Tiding that up by one step, we can instead get:
 
 This is a lot better, but...
 
-## the tidiest scehma
+## the submitted schema
 
-So, here, I am going with the narrowest (and tidiest) melt of this data
+So, here, I am going with the narrowest (and tidier) melt of this data
 
-* subject, session, activity, measure\_type, observation\_type, observation
+### activity_observations.txt
+
+* `subject`: ID# of the individual involved in any given test
+* `activity`: One of the six activities involved in any given test
+* `session`: Some tests were done during `train`ing while others were part of official `test`s
+* `measureType`: X, Y, Z, or Mag(nitude) for variables being tracked during a test
+* `observation`: Float number value recorded for the given `measureType` calculation
+* `observationType`: Indicates the `observation` is either of the `mean` or the `std` derivation
 
 Such that one row might be:
 
 * [1] 2 "test" "WALKING" "tBodyAccJerk" "std" -0.12345
 
+### activity_observations.txt
+
+And have added the required averages data set with the following:
+
+* `measureType`: X, Y, Z, or Mag(nitude) for variables being tracked during a test
+* `averageWhat`: Indicates whether these averages are grouped by `activity` or `subject` where the activity is one of the six previously mentioned, or the subject is the ID# of the individual taking the test
+* `averageFor`: #ID of individual or name of activity
+* `averageMean`: mean() of all observations of the mean for the given `measureType` for this activity or subject
+* `averageStd`: mean() of all observations of the standard deviation for the given `measureType` for this activity or subject
+
+Please note; I'm not 100% happy with this... I might FURTHER have melted this down by extracting the X, Y, Z, and Mag as yet another column, but I thought of that far too late to reverse direction... and this is still much better than the original.
+
+Please see the CodeBook.md file for more about the data and original authors.
+
 # Methodology
 
-(TBD)
+The process invented here to try to tidy this data could have been better and utilized `plyr` or `dplyr`, probably.  Still, it does work and a bit like this:
+
+* Load up the original dataset
+** Read in the subject IDs from both the test and training data sets
+*** Append the two together with a sensible column name
+** Read in the measurements from both the test and training data sets
+*** Append the two together; column names come later
+** Read in the activities from both the test and training data sets
+*** Append the two together with a sensible column name
+** Begin to dress up and stitch together the three sets of equal length columns into a single data set
+*** Identify whether each row was from a `test` or a `train` session
+*** Isolate only `std()` or `mean()` derivations for any given variable
+*** Apply the name of these variables to their respective columns
+*** Bind the columns together into a new data set
+*** Clear out the remnants of the old sets to free up memory
+** Begin to rearrange the data to be more `tidy`
+*** 
