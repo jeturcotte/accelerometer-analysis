@@ -81,7 +81,7 @@ The process invented here to try to tidy this data could have been better and ut
     * Retain only the `subject`, `activity`, and `session` variables
     * Extend the rest into a new `measureType` variable using the `observation` column values
   * Add to a new column `observationType` either `std` or `mean` depending on presense of `-std(` or `-mean(` in the value of the the `measureType` field.
-  * Change all the level labels for `measureType` to rember rendundant and messy references to `-std()` or `-mean()`
+  * Change all the level labels for `measureType` to clear out rendundant and messy references to `-std()` or `-mean()`
 * Write first dataset to file (turns out wasn't required by instructions!)
 * Use first dataset to derive averages for `std()` and `mean()`
   * Since `measureType` is common to both groupings, we cycle through the possible values of these
